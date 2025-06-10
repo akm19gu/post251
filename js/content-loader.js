@@ -1,4 +1,4 @@
-// content-loader.js (Path corrected version)
+// content-loader.js (Path corrected version for GitHub Pages project sites)
 
 class ContentLoader {
     constructor() {
@@ -11,24 +11,30 @@ class ContentLoader {
 
     async loadContent() {
         try {
-            const introContent = await this.loadMarkdown('content/introduction.md');
-            this.updateSection('introduction', introContent);
+            const introContent = await this.loadMarkdown("content/introduction.md");
+            this.updateSection("introduction", introContent);
 
-            const conceptContent = await this.loadMarkdown('content/concept.md');
-            this.updateSection('concept', conceptContent);
+            const conceptContent = await this.loadMarkdown("content/concept.md");
+            this.updateSection("concept", conceptContent);
 
-            const tracksContent = await this.loadMarkdown('content/tracks.md');
-            this.updateSection('tracks', tracksContent);
+            const tracksContent = await this.loadMarkdown("content/tracks.md");
+            this.updateSection("tracks", tracksContent);
 
         } catch (error) {
-            console.log('Content files not found, using default content');
+            console.error("Content files not found or could not be loaded:", error);
         }
     }
 
     async loadMarkdown(filePath) {
         try {
-            // For GitHub Pages project sites, the path is relative to the root of the project.
-            const response = await fetch(filePath);
+            // Construct the full path for GitHub Pages project sites
+            // Example: /post251test/content/introduction.md
+            const baseUrl = window.location.pathname.endsWith("/") ? window.location.pathname : window.location.pathname + "/";
+            const fullPath = baseUrl + filePath;
+            
+            console.log(`Attempting to load: ${fullPath}`); // Debugging log
+
+            const response = await fetch(fullPath);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -42,19 +48,19 @@ class ContentLoader {
 
     parseMarkdown(markdown) {
         let html = markdown
-            .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-            .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-            .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-            .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
-            .replace(/\*(.*)\*/gim, '<em>$1</em>')
-            .replace(/^\- (.*$)/gim, '<li>$1</li>')
-            .replace(/\n\n/gim, '</p><p>')
-            .replace(/\n/gim, '<br>');
+            .replace(/^### (.*$)/gim, "<h3>$1</h3>")
+            .replace(/^## (.*$)/gim, "<h2>$1</h2>")
+            .replace(/^# (.*$)/gim, "<h1>$1</h1>")
+            .replace(/\*\*(.*)\*\*/gim, "<strong>$1</strong>")
+            .replace(/\*(.*)\*/gim, "<em>$1</em>")
+            .replace(/^\- (.*$)/gim, "<li>$1</li>")
+            .replace(/\n\n/gim, "</p><p>")
+            .replace(/\n/gim, "<br>");
 
-        html = '<p>' + html + '</p>';
-        html = html.replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>');
-        html = html.replace(/<p><\/p>/gim, '');
-        html = html.replace(/<p><br><\/p>/gim, '');
+        html = "<p>" + html + "</p>";
+        html = html.replace(/(<li>.*<\/li>)/gim, "<ul>$1</ul>");
+        html = html.replace(/<p><\/p>/gim, "");
+        html = html.replace(/<p><br><\/p>/gim, "");
 
         return html;
     }
@@ -64,7 +70,7 @@ class ContentLoader {
 
         const section = document.getElementById(sectionId);
         if (section) {
-            const placeholder = section.querySelector('.content-placeholder');
+            const placeholder = section.querySelector(".content-placeholder");
             if (placeholder) {
                 placeholder.innerHTML = content;
             }
@@ -72,6 +78,6 @@ class ContentLoader {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     new ContentLoader();
 });
