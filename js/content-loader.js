@@ -27,14 +27,19 @@ class ContentLoader {
 
     async loadMarkdown(filePath) {
         try {
-            // Construct the full path for GitHub Pages project sites
-            // Example: /post251test/content/introduction.md
-            const baseUrl = window.location.pathname.endsWith("/") ? window.location.pathname : window.location.pathname + "/";
-            const fullPath = baseUrl + filePath;
+            // Get the base URL for the GitHub Pages project site
+            // Example: https://akm19gu.github.io/post251test/
+            const projectBaseUrl = window.location.origin + window.location.pathname;
             
-            console.log(`Attempting to load: ${fullPath}`); // Debugging log
+            // Ensure projectBaseUrl ends with a slash for correct path concatenation
+            const normalizedProjectBaseUrl = projectBaseUrl.endsWith('/' ) ? projectBaseUrl : projectBaseUrl + '/';
 
-            const response = await fetch(fullPath);
+            // Construct the full URL
+            const fullUrl = normalizedProjectBaseUrl + filePath;
+            
+            console.log(`Attempting to load: ${fullUrl}`); // Debugging log
+
+            const response = await fetch(fullUrl);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
