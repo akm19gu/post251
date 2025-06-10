@@ -1,4 +1,4 @@
-// content-loader.js (Path corrected version for GitHub Pages project sites)
+// content-loader.js (Revised path corrected version for GitHub Pages project sites)
 
 class ContentLoader {
     constructor() {
@@ -27,15 +27,13 @@ class ContentLoader {
 
     async loadMarkdown(filePath) {
         try {
-            // Get the base URL for the GitHub Pages project site
-            // Example: https://akm19gu.github.io/post251test/
-            const projectBaseUrl = window.location.origin + window.location.pathname;
+            // Dynamically get the base path for GitHub Pages project sites
+            // Example: /post251test/
+            const pathSegments = window.location.pathname.split("/").filter(segment => segment !== "");
+            const repoName = pathSegments[0]; // Assumes repository name is the first segment
+            const basePath = window.location.origin + "/" + repoName + "/";
             
-            // Ensure projectBaseUrl ends with a slash for correct path concatenation
-            const normalizedProjectBaseUrl = projectBaseUrl.endsWith('/' ) ? projectBaseUrl : projectBaseUrl + '/';
-
-            // Construct the full URL
-            const fullUrl = normalizedProjectBaseUrl + filePath;
+            const fullUrl = basePath + filePath;
             
             console.log(`Attempting to load: ${fullUrl}`); // Debugging log
 
