@@ -1,4 +1,4 @@
-// content-loader.js (Revised path corrected version for GitHub Pages project sites)
+// content-loader.js (Final path corrected version for GitHub Pages project sites with HTML conversion)
 
 class ContentLoader {
     constructor() {
@@ -11,13 +11,13 @@ class ContentLoader {
 
     async loadContent() {
         try {
-            const introContent = await this.loadMarkdown("content/introduction.md");
+            const introContent = await this.loadHtml("public/introduction.html");
             this.updateSection("introduction", introContent);
 
-            const conceptContent = await this.loadMarkdown("content/concept.md");
+            const conceptContent = await this.loadHtml("public/concept.html");
             this.updateSection("concept", conceptContent);
 
-            const tracksContent = await this.loadMarkdown("content/tracks.md");
+            const tracksContent = await this.loadHtml("public/tracks.html");
             this.updateSection("tracks", tracksContent);
 
         } catch (error) {
@@ -25,47 +25,26 @@ class ContentLoader {
         }
     }
 
-    async loadMarkdown(filePath) {
+    async loadHtml(filePath) {
         try {
-            // Dynamically get the base path for GitHub Pages project sites
-            // Example: /post251test/
             const pathSegments = window.location.pathname.split("/").filter(segment => segment !== "");
-            const repoName = pathSegments[0]; // Assumes repository name is the first segment
+            const repoName = pathSegments[0];
             const basePath = window.location.origin + "/" + repoName + "/";
             
             const fullUrl = basePath + filePath;
             
-            console.log(`Attempting to load: ${fullUrl}`); // Debugging log
+            console.log(`Attempting to load: ${fullUrl}`);
 
             const response = await fetch(fullUrl);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const text = await response.text();
-            return this.parseMarkdown(text);
+            return text;
         } catch (error) {
             console.error(`Could not load ${filePath}:`, error);
             return null;
         }
-    }
-
-    parseMarkdown(markdown) {
-        let html = markdown
-            .replace(/^### (.*$)/gim, "<h3>$1</h3>")
-            .replace(/^## (.*$)/gim, "<h2>$1</h2>")
-            .replace(/^# (.*$)/gim, "<h1>$1</h1>")
-            .replace(/\*\*(.*)\*\*/gim, "<strong>$1</strong>")
-            .replace(/\*(.*)\*/gim, "<em>$1</em>")
-            .replace(/^\- (.*$)/gim, "<li>$1</li>")
-            .replace(/\n\n/gim, "</p><p>")
-            .replace(/\n/gim, "<br>");
-
-        html = "<p>" + html + "</p>";
-        html = html.replace(/(<li>.*<\/li>)/gim, "<ul>$1</ul>");
-        html = html.replace(/<p><\/p>/gim, "");
-        html = html.replace(/<p><br><\/p>/gim, "");
-
-        return html;
     }
 
     updateSection(sectionId, content) {
