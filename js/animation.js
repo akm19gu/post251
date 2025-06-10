@@ -1,31 +1,12 @@
 console.log("animation.js loaded and starting initialization.");
 
-// Jazz theory and phrases for animation
+// For debugging: A simplified array without special characters
 const jazzElements = [
     // コード進行
     "ii-V-I", "I-vi-ii-V", "iii-vi-ii-V-I", "I-VI-ii-V",
     "Cmaj7", "Am7", "Dm7", "G7", "Em7", "A7", "Fmaj7", "Bb7",
-    "C7", "F7", "Bb7", "Eb7", "Ab7", "Db7", "Gb7", "B7",
-    
-    // 有名なフレーズ・スケール
-    "Dorian", "Mixolydian", "Bebop", "Blues Scale", "Pentatonic",
-    "Chromatic", "Whole Tone", "Diminished", "Altered", "Lydian",
-    
-    // ジャズ用語
-    "Swing", "Bebop", "Cool Jazz", "Hard Bop", "Free Jazz",
-    "Modal", "Fusion", "Latin Jazz", "Avant-garde", "Post-bop",
-    
-    // 音符記号
-    "♪", "♫", "♬", "♭", "♯", "♮", "𝄞", "𝄢", "𝄡", "𝄪", "𝄫",
-    
-    // 楽器名
-    "Sax", "Trumpet", "Piano", "Bass", "Drums", "Guitar", "Vibes",
-    
-    // リズム記号
-    "4/4", "3/4", "5/4", "7/8", "6/8", "9/8", "12/8",
-    
-    // 度数表記
-    "I", "ii", "iii", "IV", "V", "vi", "vii°", "bII", "bIII", "bVI", "bVII"
+    "C7", "F7", "Bb7", "Eb7", "Ab7", 
+
 ];
 
 class MediaArtAnimation {
