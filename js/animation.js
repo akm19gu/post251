@@ -1,3 +1,5 @@
+console.log("animation.js loaded and starting initialization.");
+
 // Jazz theory and phrases for animation
 const jazzElements = [
     // コード進行
@@ -28,6 +30,13 @@ const jazzElements = [
 
 class MediaArtAnimation {
     constructor() {
+        console.log("MediaArtAnimation constructor called."); // この行を追加
+        this.container = document.getElementById(\'background-animation\');
+        this.elements = [];
+        this.maxElements = 50;
+        this.init();
+    }
+
         this.container = document.getElementById('background-animation');
         this.elements = [];
         this.maxElements = 50;
