@@ -2,6 +2,14 @@
 
 console.log("animation.js loaded and starting initialization.");
 
+// 既に変数が二重宣言される事故を防ぐガード
+if (window._mediaArtBooted) { console.log("animation.js: already init");  return; }
+window._mediaArtBooted = true;
+console.log("🟢 animation.js start");
+
+const container = document.getElementById("background-animation");
+if (!container) { console.warn("背景用divが見つからない");  return; }
+
 // Jazz theory and phrases for animation (Simplified to avoid syntax errors)
 const jazzElements = [
     // コード進行
