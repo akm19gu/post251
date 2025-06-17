@@ -288,3 +288,27 @@ footer {
     }
 }
 
+/* ==== animation.js 用の最終仕上げ ==== */
+
+/* 1) 舞台を全面に固定し、はみ出す文字を隠す */
+#background-animation{
+    inset: 0;              /* top:0;left:0;width/height:100% と同義 */
+    position: fixed;
+    overflow: hidden;      /* ← これが無いとスクロールバーが出る */
+    z-index: 1;            /* 背景なので overlay より下で OK */
+    pointer-events: none;  /* クリック貫通 */
+}
+
+/* 2) 浮遊文字の基本スタイル強化（重複 OK、あとに書けば上書き） */
+.floating-element{
+    will-change: transform, opacity; /* パフォーマンス最適化 */
+    backface-visibility: hidden;
+    perspective: 1000px;
+    animation: float 20s linear infinite; /* JS が上書きするのでデフォルト値だけ */
+}
+
+/* 3) 必要なら keyframes を上書き（今の動きで満足なら飛ばしていい） */
+@keyframes float{
+    0%   { transform: translateY(100vh) rotate(0deg);   }
+    100% { transform: translateY(-120vh) rotate(360deg);}
+}
