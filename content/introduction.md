@@ -23,6 +23,7 @@ Post 251は前衛ジャズ音楽を探求するグループです。
 ## 連絡先
 
 ここに連絡先情報を記載してください。
-- Twitter:  ぱみ @pamiyummy
--           なかむ @akm19gu
+- Twitter:
+- ぱみ @pamiyummy
+- なかむ @akm19gu
 
