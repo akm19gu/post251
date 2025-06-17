@@ -1,4 +1,4 @@
-// content-loader.js – ルート直下の HTML を読み込む版（public/ なし）
+// content-loader.js – public フォルダから HTML を読み込む
 
 class ContentLoader {
     constructor() {
@@ -11,7 +11,7 @@ class ContentLoader {
 
     async loadContent() {
         try {
-            const base = "";
+            const base = "public/";
 
             const introContent   = await this.loadHtml(base + "introduction.html");
             this.updateSection("introduction", introContent);
