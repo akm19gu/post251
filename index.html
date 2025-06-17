@@ -1,58 +1,87 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post 251 - 前衛ジャズ音楽</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- xano明朝フォントの代替として、Noto Serif JPを使用 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post 251 - 前衛ジャズ音楽</title>
+
+  <!-- フォント & 外部 CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- 背景アニメ用の最小スタイル -->
+  <style>
+    /* 画面全体に広がる固定舞台 */
+    #background-animation{
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;              /* 背面へ */
+    }
+    /* 浮遊する要素の共通スタイル */
+    .floating-element{
+      position: absolute;
+      white-space: nowrap;
+      user-select: none;
+      will-change: transform;
+      animation: float 20s linear infinite;
+    }
+    /* シンプルな浮遊キーフレーム（好みで調整してね） */
+    @keyframes float{
+      0%   {transform: translate(0,0)               rotate(var(--r,0deg));}
+      100% {transform: translate(50vw,50vh)         rotate(calc(var(--r) + 360deg));}
+    }
+  </style>
 </head>
+
 <body>
-    <div id="background-animation"></div>
-    <div id="background-animation"></div>
-    <div id="content-overlay">
-        <header>
-            <h1 class="main-title">Post 251</h1>
-            <p class="subtitle">前衛ジャズ音楽</p>
-        </header>
+  <!-- 背景アニメーションの舞台 -->
+  <div id="background-animation"></div>
 
-        <main>
-            <section id="introduction" class="content-section">
-                <h2>サークル紹介</h2>
-                <div class="content-placeholder">
-                    <p>ここにサークル紹介の内容が入ります。Post 251は前衛ジャズ音楽を探求するグループです。</p>
-                </div>
-            </section>
+  <!-- 表示コンテンツ -->
+  <div id="content-overlay">
+    <header>
+      <h1 class="main-title">Post 251</h1>
+      <p class="subtitle">前衛ジャズ音楽</p>
+    </header>
 
-            <section id="concept" class="content-section">
-                <h2>コンセプト</h2>
-                <div class="content-placeholder">
-                    <p>ここにコンセプトの内容が入ります。従来のジャズの枠組みを超えた新しい音楽表現を追求しています。</p>
-                </div>
-            </section>
+    <main>
+      <section id="introduction" class="content-section">
+        <h2>サークル紹介</h2>
+        <div class="content-placeholder">
+          <p>ここにサークル紹介の内容が入ります。Post 251は前衛ジャズ音楽を探求するグループです。</p>
+        </div>
+      </section>
 
-            <section id="tracks" class="content-section">
-                <h2>収録曲</h2>
-                <div class="content-placeholder">
-                    <ul>
-                        <li>楽曲1 - タイトル未定</li>
-                        <li>楽曲2 - タイトル未定</li>
-                        <li>楽曲3 - タイトル未定</li>
-                    </ul>
-                </div>
-            </section>
-        </main>
+      <section id="concept" class="content-section">
+        <h2>コンセプト</h2>
+        <div class="content-placeholder">
+          <p>ここにコンセプトの内容が入ります。従来のジャズの枠組みを超えた新しい音楽表現を追求しています。</p>
+        </div>
+      </section>
 
-        <footer>
-            <p>&copy; 2025 Post 251. All rights reserved.</p>
-        </footer>
-    </div>
+      <section id="tracks" class="content-section">
+        <h2>収録曲</h2>
+        <div class="content-placeholder">
+          <ul>
+            <li>楽曲1 - タイトル未定</li>
+            <li>楽曲2 - タイトル未定</li>
+            <li>楽曲3 - タイトル未定</li>
+          </ul>
+        </div>
+      </section>
+    </main>
 
-    <script src="js/animation.js" defer></script>
-    <script src="js/content-loader.js" defer></script>
+    <footer>
+      <p>&copy; 2025 Post 251. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- スクリプトは defer で読み込む -->
+  <script src="js/animation.js" defer></script>
+  <script src="js/content-loader.js" defer></script>
 </body>
 </html>
-
