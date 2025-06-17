@@ -11,7 +11,7 @@ class ContentLoader {
 
     async loadContent() {
         try {
-            const base = "public/";
+            const base = "";
 
             const introContent   = await this.loadHtml(base + "サークル紹介.html");
             this.updateSection("introduction", introContent);
