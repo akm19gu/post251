@@ -13,13 +13,13 @@ class ContentLoader {
         try {
             const base = "";
 
-            const introContent   = await this.loadHtml(base + "サークル紹介.html");
+            const introContent   = await this.loadHtml(base + "introduction.html");
             this.updateSection("introduction", introContent);
 
-            const conceptContent = await this.loadHtml(base + "コンセプト.html");
+            const conceptContent = await this.loadHtml(base + "concept.html");
             this.updateSection("concept", conceptContent);
 
-            const tracksContent  = await this.loadHtml(base + "収録曲.html");
+            const tracksContent  = await this.loadHtml(base + "tracks.html");
             this.updateSection("tracks", tracksContent);
 
         } catch (error) {
