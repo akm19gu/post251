@@ -68,8 +68,9 @@ class MediaArtAnimation {
         element.className = 'floating-element';
         element.textContent = jazzElements[Math.floor(Math.random() * jazzElements.length)];
         
-        element.style.left = Math.random() * 100 + 'vw';
-        element.style.top = Math.random() * 100 + 'vh';
+        // 初期位置はビューポートサイズに基づくピクセル値にする
+        element.style.left = Math.random() * window.innerWidth + 'px';
+        element.style.top = Math.random() * window.innerHeight + 'px';
         
         const size = Math.random() * 20 + 10;
         element.style.fontSize = size + 'px';
@@ -79,7 +80,9 @@ class MediaArtAnimation {
         const grayValue = Math.floor(Math.random() * 100 + 100);
         element.style.color = `rgb(${grayValue}, ${grayValue}, ${grayValue})`;
         
-        element.style.transform = `rotate(${Math.random() * 360}deg)`;
+        // 各要素で回転量を変えるため CSS 変数に保存
+        const startRot = Math.random() * 360;
+        element.style.setProperty('--r', `${startRot}deg`);
         
         const duration = Math.random() * 20 + 10;
         const delay = Math.random() * 5;
@@ -98,20 +101,35 @@ class MediaArtAnimation {
     animate() {
         this.elements.forEach((item, index) => {
             const element = item.element;
-            const rect = element.getBoundingClientRect();
-            
-            if (rect.left > window.innerWidth) {
-                element.style.left = '-100px';
-            } else if (rect.right < 0) {
-                element.style.left = window.innerWidth + 'px';
+
+            // 位置の更新
+            let left = parseFloat(element.style.left);
+            let top = parseFloat(element.style.top);
+            left += item.speedX;
+            top += item.speedY;
+
+            // 画面外に出たら反対側へ移動
+            if (left > window.innerWidth) {
+                left = -100;
+            } else if (left < -100) {
+                left = window.innerWidth;
             }
-            
-            if (rect.top > window.innerHeight) {
-                element.style.top = '-100px';
-            } else if (rect.bottom < 0) {
-                element.style.top = window.innerHeight + 'px';
+
+            if (top > window.innerHeight) {
+                top = -100;
+            } else if (top < -100) {
+                top = window.innerHeight;
             }
-            
+
+            element.style.left = `${left}px`;
+            element.style.top = `${top}px`;
+
+            // 回転量更新
+            const currentRot = parseFloat(element.style.getPropertyValue('--r')) || 0;
+            const nextRot = currentRot + item.rotationSpeed;
+            element.style.setProperty('--r', `${nextRot}deg`);
+
+            // まれに表示テキストを変更
             if (Math.random() < 0.001) {
                 element.textContent = jazzElements[Math.floor(Math.random() * jazzElements.length)];
             }
@@ -124,10 +142,10 @@ class MediaArtAnimation {
         this.elements.forEach(item => {
             const element = item.element;
             const rect = element.getBoundingClientRect();
-            
+
             if (rect.left > window.innerWidth || rect.top > window.innerHeight) {
-                element.style.left = Math.random() * 100 + 'vw';
-                element.style.top = Math.random() * 100 + 'vh';
+                element.style.left = Math.random() * window.innerWidth + 'px';
+                element.style.top = Math.random() * window.innerHeight + 'px';
             }
         });
     }
