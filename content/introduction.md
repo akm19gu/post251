@@ -23,6 +23,6 @@ Post 251は前衛ジャズ音楽を探求するグループです。
 ## 連絡先
 
 ここに連絡先情報を記載してください。
-- Email: contact@post251.example.com
-- SNS: @post251music
+- Twitter:  ぱみ @pamiyummy
+-           なかむ @akm19gu
 
