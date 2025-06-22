@@ -10,31 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- 背景アニメ用の最小スタイル -->
-  <style>
-    /* 画面全体に広がる固定舞台 */
-    #background-animation{
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: -1;              /* 背面へ */
-    }
-    /* 浮遊する要素の共通スタイル */
-    .floating-element{
-      position: absolute;
-      white-space: nowrap;
-      user-select: none;
-      will-change: transform;
-      animation: float 20s linear infinite;
-    }
-    /* シンプルな浮遊キーフレーム（好みで調整してね） */
-    @keyframes float{
-      0%   {transform: translate(0,0)               rotate(var(--r,0deg));}
-      100% {transform: translate(50vw,50vh)         rotate(calc(var(--r) + 360deg));}
-    }
-  </style>
 </head>
 
 <body>

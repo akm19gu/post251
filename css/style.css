@@ -21,8 +21,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 1;  /* 背景として適切な位置に配置 */
     pointer-events: none;
+    overflow: hidden;
 }
 
 /* Content overlay */
@@ -173,36 +174,43 @@ footer {
     }
 }
 
-
-
 /* Floating elements for media art animation */
 .floating-element {
     position: absolute;
     pointer-events: none;
     font-family: 'Noto Serif JP', serif;
-    font-weight: 400;
+    font-weight: 600; /* より太くして読みやすく */
     white-space: nowrap;
     user-select: none;
-    z-index: 11;
+    z-index: 2;  /* background-animation内での相対的なz-index */
     transition: all 0.3s ease;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* テキストシャドウを追加 */
 }
 
 /* Keyframe animations */
 @keyframes float {
     0% {
         transform: translateX(0) translateY(0) rotate(0deg);
+        opacity: 0.6;
     }
     25% {
-        transform: translateX(100px) translateY(-50px) rotate(90deg);
+        transform: translateX(50px) translateY(-25px) rotate(90deg);
+        opacity: 0.8;
     }
     50% {
-        transform: translateX(-50px) translateY(100px) rotate(180deg);
+        transform: translateX(-25px) translateY(50px) rotate(180deg);
+        opacity: 1.0;
     }
     75% {
-        transform: translateX(-100px) translateY(-100px) rotate(270deg);
+        transform: translateX(-50px) translateY(-50px) rotate(270deg);
+        opacity: 0.8;
     }
     100% {
         transform: translateX(0) translateY(0) rotate(360deg);
+        opacity: 0.6;
     }
 }
 
@@ -227,13 +235,13 @@ footer {
     }
 }
 
-/* Additional animation variations */
+/* Additional animation variations - JavaScriptが優先されるように!importantを削除 */
 .floating-element:nth-child(3n) {
-    animation-name: drift !important;
+    animation-name: drift;
 }
 
 .floating-element:nth-child(5n) {
-    animation-name: spiral !important;
+    animation-name: spiral;
 }
 
 .floating-element:nth-child(7n) {
@@ -258,15 +266,8 @@ footer {
         rgba(255, 255, 255, 0.05) 50%,
         rgba(255, 255, 255, 0.1) 100%
     );
-    z-index: 3;
+    z-index: 1;
     pointer-events: none;
-}
-
-/* Performance optimizations */
-.floating-element {
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    perspective: 1000px;
 }
 
 /* Mobile optimizations */
@@ -295,7 +296,7 @@ footer {
     inset: 0;              /* top:0;left:0;width/height:100% と同義 */
     position: fixed;
     overflow: hidden;      /* ← これが無いとスクロールバーが出る */
-    z-index: 1;            /* 背景なので overlay より下で OK */
+    z-index: 1;            /* 背景として適切な位置に配置 */
     pointer-events: none;  /* クリック貫通 */
 }
 
@@ -304,10 +305,10 @@ footer {
     will-change: transform, opacity; /* パフォーマンス最適化 */
     backface-visibility: hidden;
     perspective: 1000px;
-    animation: float 20s linear infinite; /* JS が上書きするのでデフォルト値だけ */
+    /* JavaScript がアニメーションを設定するので、ここではデフォルト値のみ */
 }
 
-/* 3) 必要なら keyframes を上書き（今の動きで満足なら飛ばしていい） */
+/* 3) JavaScriptでアニメーションが設定されない場合のフォールバック */
 @keyframes float{
     0%   { transform: translateY(100vh) rotate(0deg);   }
     100% { transform: translateY(-120vh) rotate(360deg);}
