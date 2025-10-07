@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>購入特典について - Post 251</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- 背景アニメーション -->
+  <div id="background-animation"></div>
+
+  <div id="content-overlay">
+    <header>
+      <h1 class="main-title">Post 251</h1>
+      <p class="subtitle">購入特典について</p>
+
+      <nav>
+        <a href="index.html">Home</a> |
+        <a href="explanation.html">Explanations</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="content-section">
+        <h2>購入特典の概要</h2>
+        <p>このページでは、Post 251 の作品を購入した方に付属する特典の内容をご紹介します。</p>
+      </section>
+
+      <section class="content-section">
+        <h2>特典内容</h2>
+        <ul>
+          <li>📀 ボーナストラック（未公開音源）</li>
+          <li>📖 制作ノートPDF（曲構成・録音メモ・使用機材リストなど）</li>
+          <li>🎨 ジャケット原画・デザインデータ</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>入手方法</h2>
+        <p>特典はCDまたはデジタル版の購入時に自動付属します。<br>
+        Bandcamp・BOOTH などの購入ページで配布URLまたはQRコードをご確認ください。</p>
+      </section>
+
+      <section class="content-section">
+        <h2>注意事項</h2>
+        <ul>
+          <li>特典の再配布・商用利用は禁止されています。</li>
+          <li>購入者本人が個人的に楽しむ範囲でご利用ください。</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Post 251</p>
+    </footer>
+  </div>
+
+  <script src="js/animation.js" defer></script>
+</body>
+</html>
