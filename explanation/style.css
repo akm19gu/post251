@@ -1,0 +1,314 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif JP', serif;
+    color: #000;
+    background-color: #fefefe;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Background animation container */
+#background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Content overlay */
+#content-overlay {
+    position: relative;
+    z-index: 10;
+    background: rgba(254, 254, 254, 0.85);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 2rem 0;
+}
+
+.main-title {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    opacity: 0.8;
+}
+
+/* Main content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.content-section {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.content-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #000;
+    padding-bottom: 0.5rem;
+}
+
+.content-placeholder {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+}
+
+.content-placeholder p {
+    margin-bottom: 1rem;
+}
+
+.content-placeholder ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.content-placeholder li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.content-placeholder li::before {
+    content: "♪";
+    position: absolute;
+    left: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .content-section h2 {
+        font-size: 2rem;
+    }
+    
+    .content-placeholder {
+        font-size: 1.1rem;
+    }
+    
+    #content-overlay {
+        padding: 1rem;
+    }
+    
+    main {
+        padding: 0 1rem;
+    }
+    
+    .content-section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .content-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .content-placeholder {
+        font-size: 1rem;
+    }
+}
+
+
+
+/* Floating elements for media art animation */
+.floating-element {
+    position: absolute;
+    pointer-events: none;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 400;
+    white-space: nowrap;
+    user-select: none;
+    z-index: 11;
+    transition: all 0.3s ease;
+}
+
+/* Keyframe animations */
+@keyframes float {
+    0% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateX(100px) translateY(-50px) rotate(90deg);
+    }
+    50% {
+        transform: translateX(-50px) translateY(100px) rotate(180deg);
+    }
+    75% {
+        transform: translateX(-100px) translateY(-100px) rotate(270deg);
+    }
+    100% {
+        transform: translateX(0) translateY(0) rotate(360deg);
+    }
+}
+
+@keyframes drift {
+    0% {
+        transform: translateX(-100vw) translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateX(100vw) translateY(-20px) rotate(360deg);
+    }
+}
+
+@keyframes spiral {
+    0% {
+        transform: translateX(0) translateY(0) rotate(0deg) scale(0.5);
+    }
+    50% {
+        transform: translateX(50px) translateY(50px) rotate(180deg) scale(1);
+    }
+    100% {
+        transform: translateX(0) translateY(0) rotate(360deg) scale(0.5);
+    }
+}
+
+/* Additional animation variations */
+.floating-element:nth-child(3n) {
+    animation-name: drift !important;
+}
+
+.floating-element:nth-child(5n) {
+    animation-name: spiral !important;
+}
+
+.floating-element:nth-child(7n) {
+    animation-direction: reverse;
+}
+
+.floating-element:nth-child(11n) {
+    animation-timing-function: ease-in-out;
+}
+
+/* Blur effect enhancement */
+#background-animation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Performance optimizations */
+.floating-element {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .floating-element {
+        font-size: 12px !important;
+    }
+    
+    #background-animation {
+        backdrop-filter: blur(1px);
+        -webkit-backdrop-filter: blur(1px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .floating-element {
+        animation: none !important;
+        opacity: 0.1 !important;
+    }
+}
+
+/* ==== animation.js 用の最終仕上げ ==== */
+
+/* 1) 舞台を全面に固定し、はみ出す文字を隠す */
+#background-animation{
+    inset: 0;              /* top:0;left:0;width/height:100% と同義 */
+    position: fixed;
+    overflow: hidden;      /* ← これが無いとスクロールバーが出る */
+    z-index: 1;            /* 背景なので overlay より下で OK */
+    pointer-events: none;  /* クリック貫通 */
+}
+
+/* 2) 浮遊文字の基本スタイル強化（重複 OK、あとに書けば上書き） */
+.floating-element{
+    will-change: transform, opacity; /* パフォーマンス最適化 */
+    backface-visibility: hidden;
+    perspective: 1000px;
+    animation: float 20s linear infinite; /* JS が上書きするのでデフォルト値だけ */
+}
+
+/* 3) 必要なら keyframes を上書き（今の動きで満足なら飛ばしていい） */
+@keyframes float{
+    0%   { transform: translateY(100vh) rotate(0deg);   }
+    100% { transform: translateY(-120vh) rotate(360deg);}
+}
