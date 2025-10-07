@@ -31,3 +31,4 @@ for md_name, html_name in SLUGS.items():
     print(f"✓ {md_name} → {html_name}")
 
 print("Markdown → HTML 変換完了")
+
