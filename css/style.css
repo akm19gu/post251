@@ -317,14 +317,17 @@ footer {
 .content-section p {
   margin: 0 0 1.2em; /* 下だけ 1.2em 空ける */
 
-    /* ── 動画をレスポンシブに ───────────────────────────── */
-.content-section video {
-  width: 100%;        /* 画面幅いっぱいに広げる */
-  height: auto;       /* 縦横比を維持 */
-  max-width: 100%;    /* 親をはみ出さない保険 */
-  border-radius: 8px; /* 角丸（任意） */
-  box-shadow: 0 4px 12px rgba(0,0,0,.15); /* 影（任意） */
+    /* ===== 動画のはみ出し防止・レスポンシブ対応 ===== */
+.content-section video{
+  display: block;        /* 余計なインライン隙間を防ぐ */
+  width: 100%;           /* 親要素いっぱいに広げる */
+  max-width: 100%;       /* 親をはみ出さない保険 */
+  height: auto;          /* 縦横比を維持 */
+  object-fit: contain;   /* 内側に収めて切り抜きを防ぐ */
+  border-radius: 8px;    /* 任意の角丸 */
+  box-shadow: 0 4px 12px rgba(0,0,0,.15); /* 任意の影 */
 }
+
 
   line-height: 1.6;  /* 行間も少しゆったり */
 }
