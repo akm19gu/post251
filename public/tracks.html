@@ -5,12 +5,40 @@
   <li><strong>説明</strong>: ジャズにおけるⅡ−Ⅴ−Ⅰからの脱却を目指した、新しい音楽の模索のための EP。全 4 曲収録。</li>
 </ul>
 
-<video controls preload="metadata" poster="/post251/assets/img/crossfade_thumb.jpg">
-  <source src="/post251/public/Post251-crossfade.mp4" type="video/mp4">
-  お使いのブラウザは動画タグに対応していません。
-</video>
+<!-- ※ この <style> を同じページ内のどこか（</head> 直前など）に貼る。
+     既存の CSS には手を触れなくていい -->
+<style>
+  /* .content-section の内側に収めるための専用ラッパー */
+  .video-wrapper{
+    width:100%;
+    max-width:100%;
+    /* アスペクト比 16:9 → 56.25%（好みで変えてOK） */
+    position:relative;
+    padding-top:56.25%;
+  }
+  .video-wrapper video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;      /* はみ出し防止 */
+    border-radius:8px;     /* 角丸（任意） */
+    box-shadow:0 4px 12px rgba(0,0,0,.15); /* 影（任意） */
+  }
+</style>
+<!-- ▲ ここまで -------------------------------- -->
 
+<!-- ▼ ここだけコピペすれば OK --------------- -->
+<h2>クロスフェード試聴</h2>
 
+<!-- ラッパーで囲んで「説明の四角い枠」内に収める -->
+<div class="video-wrapper">
+  <video controls preload="metadata"
+         src="/post251/public/Post251-crossfade.mp4"
+         poster="/post251/assets/img/crossfade_thumb.jpg">
+    お使いのブラウザは動画タグに対応していません。
+  </video>
+</div>
 
 <h2>トラックリスト</h2>
 
