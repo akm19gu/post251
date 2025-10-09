@@ -312,3 +312,10 @@ footer {
     0%   { transform: translateY(100vh) rotate(0deg);   }
     100% { transform: translateY(-120vh) rotate(360deg);}
 }
+
+/* css/style.css の一番下あたりに追加 */
+.content-section p {
+  margin: 0 0 1.2em; /* 下だけ 1.2em 空ける */
+  line-height: 1.6;  /* 行間も少しゆったり */
+}
+
