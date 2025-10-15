@@ -67,25 +67,12 @@
         </div>
       </section>
 
-  <!-- ▼ ここを追加 ▼ -->
-  <section id="event" class="content-section">
-    <h2>出展情報</h2>
-    <div class="content-placeholder">
-      <p>
-        <a href="public/event.html" target="_blank">
-          M3秋2025 出展情報はこちら
-        </a>
-      </p>
-      <ul>
-        <li><strong>イベント</strong>: M3 秋 2025</li>
-        <li><strong>開催日</strong>: 2025年10月26日（日）10:30〜15:30</li>
-        <li><strong>会場</strong>: 東京流通センター（TRC）</li>
-        <li><strong>スペース</strong>: 第一展示場 K-05a（Post251）</li>
-        <li><strong>価格</strong>: 500円（会場価格）</li>
-      </ul>
-    </div>
-  </section>
-  <!-- ▲ ここまで追加 ▲ -->
+<section id="event" class="content-section">
+  <h2>出展情報</h2>
+  <div id="event-content" class="content-placeholder">
+    <!-- ここに event.html の中身が読み込まれる -->
+  </div>
+</section>
       
       <section id="tracks" class="content-section">
         <h2>収録曲</h2>
@@ -107,5 +94,19 @@
   <!-- スクリプトは defer で読み込む -->
   <script src="js/animation.js" defer></script>
   <script src="js/content-loader.js" defer></script>
+
+<script>
+  // event.htmlを読み込んで挿入
+  fetch('public/event.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('event-content').innerHTML = html;
+    })
+    .catch(err => {
+      console.error('event.htmlの読み込みに失敗しました:', err);
+    });
+</script>
+
+
 </body>
 </html>
