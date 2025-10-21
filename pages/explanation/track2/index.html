@@ -9,16 +9,43 @@
   <link rel="stylesheet" href="/post251/css/style.css">
   <link rel="icon" type="image/png" href="/post251/favicon.png">
   <!-- ▼ スマホだけで画像を枠内に収めるスタイル。style.css の末尾か、このページの <head> 内にコピペしてね -->
-<style>
-  @media (max-width: 768px){          /* 画面幅 768px 以下＝スマホ想定 */
-    .content-section figure,
-    .content-section img{
-      width: 100%;    /* 親 (.content-section) の幅で収める */
-      height: auto;   /* 縦横比は保持 */
+ <!-- 共通スタイルを絶対パスで -->
+  <link rel="stylesheet" href="/post251/css/style.css">
+  <link rel="icon" type="image/png" href="/post251/favicon.png">
+
+  <style>
+    img{
       max-width: 100%;
+      height: auto;
     }
-  }
-</style>
+    @media (max-width: 768px){          /* 画面幅 768px 以下＝スマホ想定 */
+      .content-section figure,
+      .content-section img{
+        width: 100%;    /* 親 (.content-section) の幅で収める */
+        height: auto;   /* 縦横比は保持 */
+        max-width: 100%;
+      }
+    }
+    ul{
+      padding-left: 25px;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+    h3{
+      margin-bottom: 16px;
+    }
+    h4{
+      margin-bottom: 8px;
+    }
+    .subsection{
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+    p{
+      margin-bottom: 0px;
+    }
+  </style>
+</head>
 
 </head>
 
