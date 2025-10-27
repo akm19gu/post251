@@ -115,6 +115,15 @@
     });
 </script>
 
+  <script>
+  fetch('public/release.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('release-content').innerHTML = html;
+    })
+    .catch(err => console.error('release.htmlの読み込みに失敗しました:', err));
+</script>
+
 
 </body>
 </html>
